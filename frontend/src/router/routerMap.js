@@ -30,7 +30,7 @@ const constantRouterMap = [
             path: '/framework/socket/socketserver',
             name: 'FrameworkSocketSocketServer',
             component: () => import('@/views/framework/socket/SocketServer.vue')
-          }, 
+          },
           {
             path: '/framework/sqlitedb/index',
             name: 'FrameworkSqliteDBIndex',
@@ -51,7 +51,7 @@ const constantRouterMap = [
             name: 'FrameworkUpdaterIndex',
             component: () => import('@/views/framework/updater/Index.vue')
           },
-        ]  
+        ]
       },
       {
         path: '/os',
@@ -80,8 +80,8 @@ const constantRouterMap = [
             name: 'OsNotificationIndex',
             component: () => import('@/views/os/notification/Index.vue')
           }
-        ]  
-      },      
+        ]
+      },
       {
         path: '/effect',
         name: 'Effect',
@@ -94,7 +94,7 @@ const constantRouterMap = [
             name: 'EffectLoginIndex',
             component: () => import('@/views/effect/login/Index.vue')
           }
-        ]  
+        ]
       },
       {
         path: '/cross',
@@ -118,8 +118,13 @@ const constantRouterMap = [
             name: 'CrossPythonIndex',
             component: () => import('@/views/cross/python/Index.vue')
           },
-        ]  
+        ]
       },
+      {
+        path: '/web-capture',
+        name: 'WebCapture',
+        component: () => import('@/views/WebCapture.vue')
+      }
     ]
   },
   {
@@ -138,5 +143,3 @@ const constantRouterMap = [
     ]
   },
 ]
-
-export default constantRouterMap
