@@ -43,8 +43,9 @@
 </template>
 
 <script setup>
+import { ipcApiRoute } from '@/api';
+import { ipc } from '@/utils/ipcRenderer';
 import { ref } from 'vue';
-import { ipcRenderer } from 'electron';
 import { ARow, ACol, ACard, AForm, AFormItem, AInput, ACheckboxGroup, ACheckbox, AButton, Divider } from 'ant-design-vue';
 
 const url = ref('');
@@ -52,28 +53,25 @@ const loading = ref(false);
 const captureOptions = ref(['image']);
 const previewItems = ref([]);
 
-const handleCapture = async () => {
+function handleCapture() {
   if (!url.value) return;
 
   loading.value = true;
   previewItems.value = [];
-
-  try {
-    const result = await ipcRenderer.invoke('capture-website', {
-      url: url.value,
-      options: captureOptions.value,
-    });
-
+  ipc.invoke(ipcApiRoute.webcapture.captureWebsite, {
+    url: url.value,
+    options: captureOptions.value,
+  }).then((result) => {
     previewItems.value = result;
-  } catch (error) {
+  }).catch((err) => {
     console.error('Failed to capture website:', error);
-  } finally {
+  }).finally(() => {
     loading.value = false;
-  }
+  })
 };
 
-const handleSave = (item) => {
-  ipcRenderer.send('save-file', item);
+function handleSave(item){
+  ipc.invoke(ipcApiRoute.webcapture.saveFile,{item});
 };
 </script>
 

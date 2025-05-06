@@ -48,10 +48,10 @@ class FrameworkController {
 
     switch (action) {
       case 'add' :
-        data.result = await sqlitedbService.addTestDataSqlite(info);;
+        data.result = await sqlitedbService.addTestDataSqlite(info);
         break;
       case 'del' :
-        data.result = await sqlitedbService.delTestDataSqlite(delete_name);;
+        data.result = await sqlitedbService.delTestDataSqlite(delete_name);
         break;
       case 'update' :
         data.result = await sqlitedbService.updateTestDataSqlite(update_name, update_age);

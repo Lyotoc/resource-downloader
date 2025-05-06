@@ -121,9 +121,9 @@ const constantRouterMap = [
         ]
       },
       {
-        path: '/web-capture',
+        path: '/web-capture/index',
         name: 'WebCapture',
-        component: () => import('@/views/WebCapture.vue')
+        component: () => import('@/views/framework/webcapture/Index.vue')
       }
     ]
   },

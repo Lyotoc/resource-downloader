@@ -12,7 +12,7 @@ class WebCaptureController {
 
     async saveFile(args) {
         const { item } = args;
-        return webcaptureService.saveFile(item);
+        webcaptureService.saveFile(item);
     }
 }
 

@@ -29,7 +29,7 @@ const ipcApiRoute = {
     createPoolNotice: 'controller/framework/createPoolNotice',
     someJobByPool: 'controller/framework/someJobByPool',
     hello: 'controller/framework/hello',
-    openSoftware: 'controller/framework/openSoftware', 
+    openSoftware: 'controller/framework/openSoftware',
   },
 
   // os
@@ -67,6 +67,12 @@ const ipcApiRoute = {
     killCrossServer: 'controller/cross/killServer',
     createCrossServer: 'controller/cross/createServer',
     requestApi: 'controller/cross/requestApi',
+  },
+
+  // webcapture
+  webcapture: {
+    captureWebsite: "controller/webcapture/captureWebsite",
+    saveFile: "controller/webcapture/saveFile"
   }
 }
 
@@ -79,7 +85,7 @@ const specialIpcRoute = {
 }
 
 export {
-  ipcApiRoute, 
+  ipcApiRoute,
   specialIpcRoute
 }
 
