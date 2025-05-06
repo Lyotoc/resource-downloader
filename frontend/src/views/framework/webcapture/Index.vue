@@ -46,7 +46,6 @@
 import { ipcApiRoute } from '@/api';
 import { ipc } from '@/utils/ipcRenderer';
 import { ref } from 'vue';
-import { ARow, ACol, ACard, AForm, AFormItem, AInput, ACheckboxGroup, ACheckbox, AButton, Divider } from 'ant-design-vue';
 
 const url = ref('');
 const loading = ref(false);
@@ -58,20 +57,26 @@ function handleCapture() {
 
   loading.value = true;
   previewItems.value = [];
-  ipc.invoke(ipcApiRoute.webcapture.captureWebsite, {
+  console.log(12, url.value);
+  console.log(111, captureOptions.value);
+
+  const args = {
     url: url.value,
-    options: captureOptions.value,
-  }).then((result) => {
+    options: [...captureOptions.value],
+  };
+  ipc.invoke(ipcApiRoute.webcapture.captureWebsite, args).then(result => {
+    console.log(`this result ${JSON.stringify(result)}`);
+
     previewItems.value = result;
   }).catch((err) => {
-    console.error('Failed to capture website:', error);
+    console.error('Failed to capture website:', err);
   }).finally(() => {
     loading.value = false;
   })
 };
 
-function handleSave(item){
-  ipc.invoke(ipcApiRoute.webcapture.saveFile,{item});
+function handleSave(item) {
+  ipc.invoke(ipcApiRoute.webcapture.saveFile, { item });
 };
 </script>
 

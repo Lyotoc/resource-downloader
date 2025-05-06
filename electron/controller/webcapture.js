@@ -7,7 +7,7 @@ class WebCaptureController {
     async captureWebsite(args) {
         const { url, options } = args;
         logger.info("[WebCaptureController] start url", url, "options:", options);
-        return webcaptureService.captureWebsite();
+        return webcaptureService.captureWebsite({ url, options });
     }
 
     async saveFile(args) {

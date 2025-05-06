@@ -9,7 +9,6 @@ const { getExtraResourcesDir } = require('ee-core/ps');
 const { logger } = require('ee-core/log');
 const { getConfig } = require('ee-core/config');
 const { frameworkService } = require('../service/framework');
-const { sqlitedbService } = require('../service/database/sqlitedb');
 const { autoUpdaterService } = require('../service/os/auto_updater');
 
 /**
