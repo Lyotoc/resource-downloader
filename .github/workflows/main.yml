@@ -68,7 +68,7 @@ jobs:
           # files: 指定需要上传的文件，这里使用了通配符，上传 dist 目录下的所有文件
           # electron-builder 默认将输出文件放在 dist 目录下
           files: |
-            dist/*
+            out/*
         env:
           # GITHUB_TOKEN 是 GitHub 自动提供的 Secret，拥有对当前仓库进行操作的权限
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
