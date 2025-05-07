@@ -64,6 +64,8 @@ jobs:
       # Step 6: 执行针对不同操作系统的 Electron 打包命令
       # 使用 Shell 的 case 语句根据 RUNNER_OS 环境变量执行不同的命令
       - name: Build Electron App for ${{ runner.os }}
+      # *** 添加 shell: bash 强制使用 Bash 执行此脚本 ***
+        shell: bash
         run: |
           # GitHub Actions 会设置 RUNNER_OS 环境变量，值为 "Linux", "Windows", 或 "macOS"
           case "$RUNNER_OS" in
