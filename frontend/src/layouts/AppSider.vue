@@ -56,11 +56,17 @@ const menu = ref({
   //   params: {}
   // },
   'menu_5': {
-    icon: 'icon-global',
+    icon: 'icon-lihua',
     title: '功能',
     pageName: 'WebCapture',
     params: {}
-  }
+  },
+  'menu_6': {
+    icon: 'icon-fengche',
+    title: '设置',
+    pageName: 'Settings',
+    params: {}
+  },
 });
 
 onMounted(() => {

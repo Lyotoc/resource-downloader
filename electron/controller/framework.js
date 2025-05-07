@@ -242,22 +242,6 @@ class FrameworkController {
   }
 
   /**
-   * 检查是否有新版本
-   */
-  checkForUpdater() { 
-    autoUpdaterService.checkUpdate();
-    return;
-  }
-
-  /**
-   * 下载新版本
-   */
-  downloadApp() {
-    autoUpdaterService.download();
-    return;
-  }
-
-  /**
    * 测试接口
    */ 
   hello(args) {

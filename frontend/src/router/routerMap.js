@@ -46,11 +46,6 @@ const constantRouterMap = [
             name: 'FrameworkSoftwareIndex',
             component: () => import('@/views/framework/software/Index.vue')
           },
-          {
-            path: '/framework/updater/index',
-            name: 'FrameworkUpdaterIndex',
-            component: () => import('@/views/framework/updater/Index.vue')
-          },
         ]
       },
       {
@@ -132,6 +127,20 @@ const constantRouterMap = [
             name: 'WebCapture',
             component: () => import('@/views/framework/webcapture/Index.vue')
           }
+        ]
+      },
+      {
+        path: '/settings',
+        name: 'Settings',
+        component: () => import('@/layouts/Menu.vue'), // 使用Menu.vue作为布局组件
+        props: { id: 'setting' },
+        redirect: { name: 'SettingsUpdaterIndex' }, // 重定向到二级菜单
+        children: [
+          {
+            path: '/setting/updater/index',
+            name: 'SettingsUpdaterIndex',
+            component: () => import('@/views/settings/updater/Index.vue')
+          },
         ]
       },
       {

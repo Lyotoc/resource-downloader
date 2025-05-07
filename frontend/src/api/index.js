@@ -10,8 +10,6 @@ const ipcApiRoute = {
     test: 'controller/example/test',
   },
   framework: {
-    checkForUpdater: 'controller/framework/checkForUpdater',
-    downloadApp: 'controller/framework/downloadApp',
     jsondbOperation: 'controller/framework/jsondbOperation',
     sqlitedbOperation: 'controller/framework/sqlitedbOperation',
     uploadFile: 'controller/framework/uploadFile',
@@ -73,6 +71,11 @@ const ipcApiRoute = {
   webcapture: {
     captureWebsite: "controller/webcapture/captureWebsite",
     saveFile: "controller/webcapture/saveFile"
+  },
+  // setting
+  settings:{
+    checkForUpdater: 'controller/settings/checkForUpdater',
+    downloadApp: 'controller/settings/downloadApp',
   }
 }
 
