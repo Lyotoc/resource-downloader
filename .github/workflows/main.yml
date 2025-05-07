@@ -63,7 +63,7 @@ jobs:
       # electron-builder 会根据当前运行的操作系统自动构建对应平台的安装包
       # 注意：这个命令会在项目根目录执行，因为上一步设置的 working-directory 只对那一步有效
       - name: Build Electron App
-        run: npm run build # 或 yarn build 如果使用 yarn
+        run: npm run start # 或 yarn build 如果使用 yarn
 
       # Step 7: 上传打包好的文件到 Release Assets
       # softprops/action-gh-release 是一个非常方便的 Action，用于管理 GitHub Release
