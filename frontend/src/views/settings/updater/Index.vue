@@ -4,7 +4,7 @@
       <span>
         1. 自动更新
       </span>
-    </div>  
+    </div>
     <div class="one-block-2">
       <a-space>
         <a-button @click="checkForUpdater()">检查更新</a-button>
@@ -15,7 +15,7 @@
       <span>
         2. 下载进度
       </span>
-    </div>  
+    </div>
     <div class="one-block-2">
       <a-progress :percent="percentNumber" status="active" />
       <a-space>
@@ -53,7 +53,7 @@ function init() {
 }
 
 function checkForUpdater () {
-  ipc.invoke(ipcApiRoute.framework.checkForUpdater).then(r => {
+  ipc.invoke(ipcApiRoute.settings.checkForUpdater).then(r => {
     console.log(r);
   })
 }
@@ -63,7 +63,7 @@ function download () {
     message.info('没有可用版本');
     return
   }
-  ipc.invoke(ipcApiRoute.framework.downloadApp).then(r => {
+  ipc.invoke(ipcApiRoute.settings.downloadApp).then(r => {
     console.log(r);
   })
 }
@@ -82,4 +82,3 @@ function download () {
   }
 }
 </style>
-  

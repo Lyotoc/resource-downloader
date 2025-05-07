@@ -1,4 +1,4 @@
-const {autoUpdaterService}  = require('../service/os/auto_updater')
+const { autoUpdaterService } = require('../service/os/auto_updater')
 class SettingsController {
     /**
      * 检查是否有新版本
@@ -16,3 +16,7 @@ class SettingsController {
         return;
     }
 }
+
+SettingsController.toString = () => '[class SettingsController]';
+
+module.exports = SettingsController;  
