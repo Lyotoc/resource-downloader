@@ -56,6 +56,10 @@ jobs:
       - name: Install frontend dependencies
         run: npm install # 或 npm i
         working-directory: frontend # 指定在 frontend 目录下执行命令
+      
+      # Step 5-1: 构建依赖
+      - name: Install public store
+        run: npm build # 或 npm i
 
       # Step 6: 执行针对不同操作系统的 Electron 打包命令
       # 使用 Shell 的 case 语句根据 RUNNER_OS 环境变量执行不同的命令
