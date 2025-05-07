@@ -1,6 +1,6 @@
 {
-  "productName": "ee",
-  "appId": "com.bilibili.ee",
+  "productName": "e_commerce_assistant",
+  "appId": "com.lyoto.e_commerce_assistant",
   "copyright": "© 2025 duola Technology Co., Ltd.",
   "directories": {
     "output": "out"
@@ -31,7 +31,7 @@
   ],
   "mac": {
     "icon": "build/icons/icon.icns",
-    "artifactName": "${productName}-${os}-${version}-${arch}.${ext}",
+    "artifactName": "${productName}-${os}-v${version}-${arch}.${ext}",
     "darkModeSupport": true,
     "hardenedRuntime": false
   }

@@ -57,23 +57,41 @@ jobs:
         run: npm install # 或 npm i
         working-directory: frontend # 指定在 frontend 目录下执行命令
 
-      # Step 6: 执行 Electron 打包命令
-      # 这个命令应该在你的 package.json 的 "scripts" 中定义，
-      # 例如: "build": "electron-builder"
-      # electron-builder 会根据当前运行的操作系统自动构建对应平台的安装包
-      # 注意：这个命令会在项目根目录执行，因为上一步设置的 working-directory 只对那一步有效
-      - name: Build Electron App
-        run: npm run start # 或 yarn build 如果使用 yarn
+      # Step 6: 执行针对不同操作系统的 Electron 打包命令
+      # 使用 Shell 的 case 语句根据 RUNNER_OS 环境变量执行不同的命令
+      - name: Build Electron App for ${{ runner.os }}
+        run: |
+          # GitHub Actions 会设置 RUNNER_OS 环境变量，值为 "Linux", "Windows", 或 "macOS"
+          case "$RUNNER_OS" in
+            "Windows")
+              echo "Running Windows build command: npm run build-w"
+              npm run build-w
+              ;;
+            "macOS")
+              echo "Running macOS build command: npm run build-m-arm64"
+              npm run build-m-arm64
+              ;;
+            "Linux")
+              echo "Running Linux build command: npm run build-l"
+              npm run build-l
+              ;;
+            *)
+              # 处理意料之外的操作系统，虽然矩阵已经限制了
+              echo "Unsupported OS: $RUNNER_OS"
+              exit 1 # 使该 Job 失败
+              ;;
+          esac
 
       # Step 7: 上传打包好的文件到 Release Assets
       # softprops/action-gh-release 是一个非常方便的 Action，用于管理 GitHub Release
       # 它能够找到当前触发的 Release，并将指定的文件作为 Assets 上传
       - name: Upload Release Assets
         uses: softprops/action-gh-release@v1
-        if: startsWith(github.ref, 'refs/tags/') # 确保只在 tag 上运行，虽然 release trigger 已经保证了
+        # 这个 if 条件是冗余的，因为 release trigger 已经保证了，但保留也无害
+        if: startsWith(github.ref, 'refs/tags/')
         with:
           # files: 指定需要上传的文件，这里使用了通配符，上传 dist 目录下的所有文件
-          # electron-builder 默认将输出文件放在 dist 目录下
+          # 确保你的 build-w, build-m-arm64, build-l 脚本都会将生成的安装包输出到 dist 目录
           files: |
             out/*
         env:

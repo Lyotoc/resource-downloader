@@ -1,5 +1,5 @@
 {
-  "productName": "ee",
+  "productName": "e_commerce_assistant",
   "appId": "com.lyoto.e_commerce_assistant",
   "copyright": "© 2025 hly Technology Co., Ltd.",
   "directories": {
@@ -30,7 +30,7 @@
     "installerHeaderIcon": "build/icons/icon.ico",
     "createDesktopShortcut": true,
     "createStartMenuShortcut": true,
-    "shortcutName": "ee"
+    "shortcutName": "电商助手"
   },
   "publish": [
     {
@@ -40,7 +40,7 @@
   ],
   "win": {
     "icon": "build/icons/icon.ico",
-    "artifactName": "${productName}-${os}-${version}-${arch}.${ext}",
+    "artifactName": "${productName}-${os}-v${version}-${arch}.${ext}",
     "target": [
       {
         "target": "nsis"

@@ -1,6 +1,6 @@
 {
   "name": "e_commerce_assistant",
-  "version": "4.1.0",
+  "version": "0.0.1-beta",
   "description": "A fast, desktop software development framework",
   "main": "./public/electron/main.js",
   "scripts": {
