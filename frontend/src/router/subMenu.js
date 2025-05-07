@@ -18,7 +18,7 @@ export default {
 			title: 'socket服务',
 			pageName: 'FrameworkSocketSocketServer',
 			params: {}
-		},    
+		},
 		'menu_104' : {
 			icon: 'profile',
 			title: 'sqlite数据库',
@@ -30,20 +30,20 @@ export default {
 			title: '任务',
 			pageName: 'FrameworkJobsIndex',
 			params: {}
-		},				  
+		},
 		'menu_106' : {
 			icon: 'profile',
 			title: '软件调用',
 			pageName: 'FrameworkSoftwareIndex',
 			params: {}
-		},	
+		},
     'menu_107' : {
 			icon: 'profile',
 			title: '自动更新',
 			pageName: 'FrameworkUpdaterIndex',
 			params: {}
-		},    	                                           
-	},	
+		},
+	},
   os: {
     'menu_100' : {
         icon: 'profile',
@@ -68,15 +68,15 @@ export default {
         title: '图片',
         pageName: 'OsFilePic',
         params: {}
-    }, 
-  },  
+    },
+  },
   effect: {
     'menu_100' : {
       icon: 'profile',
       title: '登录',
       pageName: 'EffectLoginIndex',
       params: {}
-    }                                                
+    }
   },
   cross: {
     'menu_100' : {
@@ -96,6 +96,14 @@ export default {
       title: 'python服务',
       pageName: 'CrossPythonIndex',
       params: {}
-    },                                            
+    },
   },
+  feature: { // 新增“功能”顶级菜单
+    'menu_100' : { // 新增“网页抓取”二级菜单
+      icon: 'profile', // 可以根据需要修改图标
+      title: '网页抓取',
+      pageName: 'WebCapture',
+      params: {}
+    }
+  }
 }

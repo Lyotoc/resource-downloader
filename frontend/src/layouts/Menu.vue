@@ -1,16 +1,13 @@
 <template>
   <a-layout id="app-menu">
-    <a-layout-sider
-      theme="light"
-      class="layout-sider"
-    >
-      <a-menu 
-        theme="light" 
-        mode="inline" 
-        :selectedKeys="[current]"
-        @click="changeMenu">
+    <a-layout-sider theme="light" class="layout-sider">
+      <div class="collapse-trigger" @click="sidebarStore.toggleCollapsed">
+        <menu-unfold-outlined v-if="sidebarStore.collapsed" />
+        <menu-fold-outlined v-else />
+      </div>
+      <a-menu theme="light" mode="inline" :selectedKeys="[current]" @click="changeMenu">
         <a-menu-item v-for="(menuInfo, subIndex) in menu" :key="subIndex">
-          <router-link :to="{ name: menuInfo.pageName, params: menuInfo.params}">
+          <router-link :to="{ name: menuInfo.pageName, params: menuInfo.params }">
             <span>{{ menuInfo.title }}</span>
           </router-link>
         </a-menu-item>
@@ -27,6 +24,10 @@
 import { ref, watch, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
 import subMenu from '@/router/subMenu';
+import { MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons-vue';
+import { useSidebarStore } from '@/store/sidebar'; // 导入 useSidebarStore
+
+const sidebarStore = useSidebarStore(); // 初始化 store
 
 const props = defineProps({
   id: {
@@ -65,6 +66,7 @@ function changeMenu(e) {
 #app-menu {
   height: 100%;
   text-align: center;
+
   .layout-sider {
     border-top: 1px solid #e8e8e8;
     border-right: 1px solid #e8e8e8;

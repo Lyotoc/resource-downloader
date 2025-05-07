@@ -1,12 +1,10 @@
 <template>
   <a-layout id="app-layout-sider">
-    <a-layout-sider v-model:aollppsed="aollppsed" theme="light" class="layout-sider" :width="200" :aollppsedWidth="20">
+    <a-layout-sider v-model:collapsed="sidebarStore.collapsed" theme="light" class="layout-sider" :width="100"
+      :collapsedWidth="0">
+
       <div class="logo">
-        <img v-if="!collapsed" class="pic-logo" src="~@/assets/logo.png">
-      </div>
-      <div class="collapse-trigger" @click="() => collapsed = !collapsed">
-        <menu-unfold-outlined v-if="collapsed" />
-        <menu-fold-outlined v-else />
+        <img class="pic-logo" src="~@/assets/logo.png">
       </div>
       <a-menu class="menu-item" theme="light" mode="inline" :selectedKeys="[current]" @click="menuHandle">
         <a-menu-item v-for="(menuInfo, index) in menu" :key="index">
@@ -25,41 +23,41 @@
 <script setup>
 import { ref, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
-import { MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons-vue';
+import { useSidebarStore } from '@/store/sidebar'; // 导入 useSidebarStore
+
+const sidebarStore = useSidebarStore(); // 初始化 store
 
 const router = useRouter();
-
-const collapsed = ref(true);
-const current = ref('menu_1');
+const current = ref('menu_5');
 
 const menu = ref({
-  'menu_1': {
-    icon: 'icon-fengche',
-    title: '框架',
-    pageName: 'Framework',
-    params: {}
-  },
-  'menu_2': {
-    icon: 'icon-niudan',
-    title: '系统',
-    pageName: 'Os',
-    params: {}
-  },
-  'menu_3': {
-    icon: 'icon-liuxing',
-    title: '特效',
-    pageName: 'Effect',
-    params: {}
-  },
-  'menu_4': {
-    icon: 'icon-gouwu',
-    title: 'cross',
-    pageName: 'Cross',
-    params: {}
-  },
+  // 'menu_1': {
+  //   icon: 'icon-fengche',
+  //   title: '框架',
+  //   pageName: 'Framework',
+  //   params: {}
+  // },
+  // 'menu_2': {
+  //   icon: 'icon-niudan',
+  //   title: '系统',
+  //   pageName: 'Os',
+  //   params: {}
+  // },
+  // 'menu_3': {
+  //   icon: 'icon-liuxing',
+  //   title: '特效',
+  //   pageName: 'Effect',
+  //   params: {}
+  // },
+  // 'menu_4': {
+  //   icon: 'icon-gouwu',
+  //   title: 'cross',
+  //   pageName: 'Cross',
+  //   params: {}
+  // },
   'menu_5': {
     icon: 'icon-global',
-    title: '网页抓取',
+    title: '功能',
     pageName: 'WebCapture',
     params: {}
   }

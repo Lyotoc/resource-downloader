@@ -121,26 +121,34 @@ const constantRouterMap = [
         ]
       },
       {
-        path: '/web-capture/index',
-        name: 'WebCapture',
-        component: () => import('@/views/framework/webcapture/Index.vue')
-      }
-    ]
-  },
-  {
-    path: '/special',
-    children: [
-      {
-        path: 'subwindow',
-        name: 'SpecialSubwindowIpc',
-        component: () => import('@/views/os/subwindow/Ipc.vue')
+        path: '/feature', // 新增顶级菜单“功能”
+        name: 'Feature',
+        component: () => import('@/layouts/Menu.vue'), // 使用Menu.vue作为布局组件
+        props: { id: 'feature' },
+        redirect: { name: 'WebCapture' }, // 重定向到二级菜单
+        children: [
+          {
+            path: '/feature/web-capture', // 修改为二级菜单路径
+            name: 'WebCapture',
+            component: () => import('@/views/framework/webcapture/Index.vue')
+          }
+        ]
       },
       {
-        path: '/login',
-        name: 'SpecialLoginWindow',
-        component: () => import('@/views/effect/login/Window.vue')
+        path: '/special',
+        children: [
+          {
+            path: 'subwindow',
+            name: 'SpecialSubwindowIpc',
+            component: () => import('@/views/os/subwindow/Ipc.vue')
+          },
+          {
+            path: '/login',
+            name: 'SpecialLoginWindow',
+            component: () => import('@/views/effect/login/Window.vue')
+          },
+        ]
       },
     ]
-  },
-]
+  }]
 export default constantRouterMap
