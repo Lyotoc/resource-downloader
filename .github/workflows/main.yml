@@ -59,7 +59,7 @@ jobs:
       
       # Step 5-1: 构建依赖
       - name: Install public store
-        run: npm build # 或 npm i
+        run: npm run build # 或 npm i
 
       # Step 6: 执行针对不同操作系统的 Electron 打包命令
       # 使用 Shell 的 case 语句根据 RUNNER_OS 环境变量执行不同的命令
