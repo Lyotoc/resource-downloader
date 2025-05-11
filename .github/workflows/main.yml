@@ -65,7 +65,6 @@ jobs:
       # Step 5-1: 安装browsers
       - name: Install brower(chromium) dependencies
         run: npm run install-browsers # 或 npm i
-        working-directory: frontend # 指定在 frontend 目录下执行命令
       
       # Step 5-2: 构建依赖
       - name: Install public store
