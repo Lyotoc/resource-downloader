@@ -1,8 +1,23 @@
-const { dialog } = require('electron');
+const { dialog, app } = require('electron');
 const { chromium } = require('playwright');
 const https = require('https');
 const fs = require('fs');
 const { logger } = require('ee-core/log');
+const path = require('path');
+const { osx } = require('ee-core/utils/is');
+const { is } = require('ee-core/utils');
+
+function findPath(appBrowersPath) {
+    let dirs_ = fs.readdirSync(path.join(appBrowersPath, "browsers"));
+    let chromeDetailsPath = 'chrome.exe';
+    if (is.macOS()) {
+        chromeDetailsPath = "chrome-mac/Chromium.app/Contents/MacOS/Chromium";
+    }
+    for (const dir_ of dirs_) {
+        if (dir_.startsWith('chromium-')) return path.join(appBrowersPath, dir_, "chrome-mac");
+    }
+    return null
+}
 
 class WebCaptureService {
     /**
@@ -15,7 +30,13 @@ class WebCaptureService {
     async captureWebsite({ url, options }) {
         logger.info('[WebCaptureService] captureWebsite, url:', url, 'options:', options);
         try {
-            const browser = await chromium.launch();
+            const appPath = app.getAppPath();
+            console.log(`the appPath ${appPath}`);
+
+            const browserPath = findPath(appPath);
+            console.log(`find browser path ${browserPath}`);
+
+            const browser = await chromium.launch({ executablePath: browserPath });
             const page = await browser.newPage();
             await page.goto(url, { waitUntil: "load" });
             const result = [];
