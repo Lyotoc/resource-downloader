@@ -1,20 +1,21 @@
-const { dialog, app } = require('electron');
+const { dialog } = require('electron');
 const { chromium } = require('playwright');
 const https = require('https');
 const fs = require('fs');
 const { logger } = require('ee-core/log');
 const path = require('path');
-const { osx } = require('ee-core/utils/is');
 const { is } = require('ee-core/utils');
+const { getExtraResourcesDir } = require('ee-core/ps');
 
 function findPath(appBrowersPath) {
-    let dirs_ = fs.readdirSync(path.join(appBrowersPath, "browsers"));
+   let appBrowersPath_ =  path.join(appBrowersPath,"browsers");
+    let dirs_ = fs.readdirSync(appBrowersPath_);
     let chromeDetailsPath = 'chrome.exe';
-    if (is.macOS()) {
-        chromeDetailsPath = "chrome-mac/Chromium.app/Contents/MacOS/Chromium";
+    if (is.windows()) {
+        chromeDetailsPath = "chrome-win/chrome.exe";
     }
     for (const dir_ of dirs_) {
-        if (dir_.startsWith('chromium-')) return path.join(appBrowersPath, dir_, "chrome-mac");
+        if (dir_.startsWith('chromium-')) return path.join(appBrowersPath_, dir_, chromeDetailsPath);
     }
     return null
 }
@@ -30,11 +31,12 @@ class WebCaptureService {
     async captureWebsite({ url, options }) {
         logger.info('[WebCaptureService] captureWebsite, url:', url, 'options:', options);
         try {
-            const appPath = app.getAppPath();
-            console.log(`the appPath ${appPath}`);
+            const extraResourcesPAth = getExtraResourcesDir();
+            
+            logger.info(`the extraResourcesPAth ${extraResourcesPAth}`);
 
-            const browserPath = findPath(appPath);
-            console.log(`find browser path ${browserPath}`);
+            const browserPath = findPath(extraResourcesPAth);
+            logger.info(`find browser path ${browserPath}`);
 
             const browser = await chromium.launch({ executablePath: browserPath });
             const page = await browser.newPage();
