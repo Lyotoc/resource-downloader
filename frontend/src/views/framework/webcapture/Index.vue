@@ -105,7 +105,7 @@ function handleCapture() {
 
   // 基本的 URL 合法性校验
   // 这个正则表达式可以匹配 http, https协议，并检查域名部分
-  const urlPattern = /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/i;
+  const urlPattern = /^(https?|ftp|file):\/\/[-A-Za-z0-9+&@#/%?=~_|!:,.;]+[-A-Za-z0-9+&@#/%=~_|]/i;
   if (!urlPattern.test(processedUrl)) {
     // 如果 URL 不合法，提醒用户并终止抓取
     message.error('请输入一个合法的网页地址，例如：https://www.example.com');
